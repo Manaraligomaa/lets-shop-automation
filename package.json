@@ -1,0 +1,29 @@
+{
+  "name": "lets-shop-automation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright TypeScript automation for Let's Shop (Jira project AI)",
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:cart": "playwright test --grep @cart",
+    "test:api": "playwright test --grep @api",
+    "test:bugs": "playwright test --grep @known-bug",
+    "test:headed": "playwright test --headed --workers=1",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run typecheck && npm run lint"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "^22.10.0",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.17.0",
+    "eslint-plugin-playwright": "^2.1.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "zod": "^4.6.7"
+  }
+}
