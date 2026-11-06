@@ -11,6 +11,11 @@ concurrency:
 jobs:
   playwright:
     runs-on: ubuntu-latest
+    # Browsers and their system packages come preinstalled (installing them took 15 minutes on the Ubuntu mirror).
+    # Keep the tag equal to the @playwright/test version in package.json.
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      options: --user 1001
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +24,6 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: npx playwright install --with-deps chromium
       - run: npx eslint .
       - run: npx tsc --noEmit
       - run: npx playwright test --retries=0

@@ -80,7 +80,7 @@ Feature tags: `@api`, `@navigation`, `@products`, `@cart`, `@checkout`, `@logout
 - Screenshots and traces are kept only for failed tests. On CI: JUnit at `test-results/junit.xml`.
 
 ## CI
-`.github/workflows/playwright.yml` runs lint, typecheck and the whole suite with no retries on every pull request to `main` and every push to it, and uploads the report and `test-results/` when something fails. It needs the repository secrets `USER_EMAIL` and `USER_PASSWORD` (the test account). All runs share that account, so they wait for each other (`concurrency`); don't run the suite locally while a CI run is going.
+`.github/workflows/playwright.yml` runs lint, typecheck and the whole suite with no retries on every pull request to `main` and every push to it, and uploads the report and `test-results/` when something fails. It runs in Playwright's Docker image, which has the browsers preinstalled: when you upgrade `@playwright/test`, change the image tag in the workflow to the same version. It needs the repository secrets `USER_EMAIL` and `USER_PASSWORD` (the test account). All runs share that account, so they wait for each other (`concurrency`); don't run the suite locally while a CI run is going.
 
 ## Speed and timeouts
 - **Static-asset cache.** Every test starts with an empty browser cache, so on its own each one downloads the whole app (about 1.4 MB) again, which on a slow connection outlasts the test timeout. `utils/asset-cache.ts` serves the app's scripts, styles, fonts and images from `.cache/static-assets/` (gitignored), shared by all tests, workers and runs. This is safe because the build puts a content hash in those file names; the HTML page and the API always go to the network. `ASSET_CACHE=off` turns it off; delete `.cache/` to start cold.
