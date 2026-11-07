@@ -1,0 +1,43 @@
+{
+  "feature": "cart",
+  "title": "Add products to the cart",
+  "addedToast": "Product Added To Cart",
+  "checkoutRoute": "#/dashboard/order?prop=",
+  "addFromDashboard": [
+    { "tc": "TC-CART-01", "name": "Add To Cart on the dashboard adds the product", "tags": ["@smoke", "@regression"],
+      "product": "ZARA COAT 3" }
+  ],
+  "addFromDetails": [
+    { "tc": "TC-CART-02", "name": "Add to Cart on product details adds the product", "tags": ["@smoke", "@regression"],
+      "productId": "6960ea76c941646b7a8b3dd5", "product": "iphone 13 pro" }
+  ],
+  "cartContents": [
+    { "tc": "TC-CART-03", "name": "Cart lists its products with subtotal and total", "tags": ["@regression"],
+      "products": ["ZARA COAT 3", "iphone 13 pro"], "expectedSubtotal": "$66500", "expectedTotal": "$66500" }
+  ],
+  "cartCount": [
+    { "tc": "TC-CART-04", "name": "Header Cart button shows the number of products", "tags": ["@regression"],
+      "products": ["ZARA COAT 3", "iphone 13 pro"], "expectedCount": "2" }
+  ],
+  "remove": [
+    { "tc": "TC-CART-05", "name": "Removing a product leaves the others", "tags": ["@regression"],
+      "products": ["ZARA COAT 3", "iphone 13 pro"], "remove": "iphone 13 pro", "remaining": "ZARA COAT 3" }
+  ],
+  "removeLast": [
+    { "tc": "TC-CART-06", "name": "Removing the last product shows the empty cart message", "tags": ["@regression"],
+      "products": ["ZARA COAT 3"], "remove": "ZARA COAT 3" }
+  ],
+  "checkout": [
+    { "tc": "TC-CART-07", "name": "Checkout opens the order page with the cart products", "tags": ["@smoke", "@regression"],
+      "products": ["ZARA COAT 3"], "expectedQuantity": "Quantity: 1" }
+  ],
+  "buyNow": [
+    { "tc": "TC-CART-08", "name": "Buy Now opens the order page for that product", "tags": ["@regression"],
+      "products": ["ZARA COAT 3", "iphone 13 pro"], "buy": "iphone 13 pro", "expectedQuantity": "Quantity: 1" }
+  ],
+  "subtotalAfterRemove": [
+    { "tc": "TC-CART-09", "name": "Subtotal updates after a product is removed", "tags": ["@regression"],
+      "products": ["ZARA COAT 3", "iphone 13 pro"], "remove": "iphone 13 pro", "expectedSubtotal": "$11500",
+      "bug": "After a product is removed the subtotal is wrong until reload: $66500 minus a $55000 item shows $78000" }
+  ]
+}
