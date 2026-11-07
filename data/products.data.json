@@ -1,0 +1,25 @@
+{
+  "feature": "products",
+  "title": "Find and view products",
+  "search": [
+    { "tc": "TC-PRD-01", "name": "Search by product name shows only that product", "tags": ["@smoke", "@regression"],
+      "term": "ZARA COAT 3", "expectedProducts": ["ZARA COAT 3"] },
+    { "tc": "TC-PRD-02", "name": "Search with no match shows no products", "tags": ["@regression", "@negative"],
+      "term": "NO SUCH PRODUCT", "expectedProducts": [] }
+  ],
+  "categoryFilter": [
+    { "tc": "TC-PRD-03", "name": "Category filter shows the products in that category", "tags": ["@regression"],
+      "label": "electronics", "expectedProducts": ["ADIDAS ORIGINAL", "ZARA COAT 3", "iphone 13 pro"] },
+    { "tc": "TC-PRD-04", "name": "Category filter with no products shows none", "tags": ["@regression", "@negative"],
+      "label": "household", "expectedProducts": [] }
+  ],
+  "priceRange": [
+    { "tc": "TC-PRD-05", "name": "Price range shows only products within it", "tags": ["@regression"],
+      "min": 20000, "max": 60000, "expectedProducts": ["iphone 13 pro"] }
+  ],
+  "details": [
+    { "tc": "TC-PRD-06", "name": "Product details show name, price and description", "tags": ["@regression"],
+      "productId": "6960ea76c941646b7a8b3dd5", "expectedName": "iphone 13 pro", "expectedPrice": "$ 55000",
+      "expectedDescription": "Apple phone" }
+  ]
+}

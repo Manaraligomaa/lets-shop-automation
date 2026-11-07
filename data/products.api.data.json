@@ -1,0 +1,45 @@
+{
+  "feature": "products",
+  "title": "Product catalog API",
+  "catalog": [
+    { "tc": "TC-API-PRD-01", "name": "Catalog returns every product in the agreed contract", "tags": ["@smoke", "@regression"],
+      "expectedProducts": ["ADIDAS ORIGINAL", "ZARA COAT 3", "iphone 13 pro"] }
+  ],
+  "detail": [
+    { "tc": "TC-API-PRD-02", "name": "Product detail returns the product by id", "tags": ["@regression"],
+      "productId": "6960ea76c941646b7a8b3dd5", "expectedName": "iphone 13 pro", "expectedPrice": 55000 }
+  ],
+  "unknownProduct": [
+    { "tc": "TC-API-PRD-03", "name": "Unknown product id is rejected with 400 Product not found", "tags": ["@regression", "@negative"],
+      "productId": "000000000000000000000000", "expectedStatus": 400, "expectedMessage": "Product not found" }
+  ],
+  "noToken": [
+    { "tc": "TC-API-PRD-04", "name": "Catalog without a token is rejected with 401", "tags": ["@regression", "@negative", "@security"],
+      "expectedStatus": 401, "expectedMessage": "Access denied. No token provided." }
+  ],
+  "filters": [
+    { "tc": "TC-API-PRD-05", "name": "Search by the exact name returns that product", "tags": ["@regression"],
+      "query": { "productName": "ZARA COAT 3" }, "expectedProducts": ["ZARA COAT 3"] },
+    { "tc": "TC-API-PRD-06", "name": "Price range returns only products within it", "tags": ["@regression"],
+      "query": { "minPrice": 20000, "maxPrice": 60000 }, "expectedProducts": ["iphone 13 pro"] }
+  ],
+  "filterBugs": [
+    { "tc": "TC-API-PRD-07", "name": "Search ignores letter case", "tags": ["@regression"],
+      "query": { "productName": "zara" }, "expectedProducts": ["ZARA COAT 3"],
+      "bug": "Search is case-sensitive: \"zara\" finds nothing, only \"ZARA\" finds ZARA COAT 3" },
+    { "tc": "TC-API-PRD-08", "name": "Search finds a word inside the name", "tags": ["@regression"],
+      "query": { "productName": "COAT" }, "expectedProducts": ["ZARA COAT 3"],
+      "bug": "Search matches only from the start of the name: \"COAT\" finds nothing" },
+    { "tc": "TC-API-PRD-09", "name": "Min price alone filters the catalog", "tags": ["@regression"],
+      "query": { "minPrice": 20000 }, "expectedProducts": ["iphone 13 pro"],
+      "bug": "Min price is ignored without a max price: min 20000 still returns the $11500 products" },
+    { "tc": "TC-API-PRD-10", "name": "Max price alone filters the catalog", "tags": ["@regression"],
+      "query": { "maxPrice": 20000 }, "expectedProducts": ["ADIDAS ORIGINAL", "ZARA COAT 3"],
+      "bug": "Max price is ignored without a min price: max 20000 still returns the $55000 iphone 13 pro" }
+  ],
+  "malformedId": [
+    { "tc": "TC-API-PRD-11", "name": "Malformed product id is rejected with 400 and a plain message", "tags": ["@regression", "@negative", "@security"],
+      "productId": "abc", "expectedStatus": 400,
+      "bug": "A malformed id returns 500 with the raw database error (Mongoose CastError), which leaks internals" }
+  ]
+}
