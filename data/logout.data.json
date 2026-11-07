@@ -1,0 +1,37 @@
+{
+  "feature": "logout",
+  "title": "Sign out of the shop",
+  "loginRoute": "#/auth/login",
+  "dashboardRoute": "#/dashboard/dash",
+  "logoutToast": "Logout Successfully",
+  "signOutFrom": [
+    { "tc": "TC-OUT-01", "name": "Sign Out on the dashboard opens the login page", "tags": ["@smoke", "@regression"],
+      "startRoute": "#/dashboard/dash" },
+    { "tc": "TC-OUT-02", "name": "Sign Out on the cart opens the login page", "tags": ["@regression"],
+      "startRoute": "#/dashboard/cart" },
+    { "tc": "TC-OUT-03", "name": "Sign Out on My Orders opens the login page", "tags": ["@regression"],
+      "startRoute": "#/dashboard/myorders" },
+    { "tc": "TC-OUT-04", "name": "Sign Out on product details opens the login page", "tags": ["@regression"],
+      "startRoute": "#/dashboard/product-details/6960ea76c941646b7a8b3dd5" }
+  ],
+  "lockedAfterSignOut": [
+    { "tc": "TC-OUT-05", "name": "After Sign Out the dashboard redirects to login", "tags": ["@smoke", "@regression", "@negative"],
+      "route": "#/dashboard/dash" },
+    { "tc": "TC-OUT-06", "name": "After Sign Out the cart redirects to login", "tags": ["@regression", "@negative"],
+      "route": "#/dashboard/cart" },
+    { "tc": "TC-OUT-07", "name": "After Sign Out My Orders redirects to login", "tags": ["@regression", "@negative"],
+      "route": "#/dashboard/myorders" }
+  ],
+  "backAfterSignOut": [
+    { "tc": "TC-OUT-08", "name": "Browser Back after Sign Out stays on the login page", "tags": ["@regression", "@negative"] }
+  ],
+  "loginAgain": [
+    { "tc": "TC-OUT-09", "name": "The user can log in again after Sign Out", "tags": ["@regression"],
+      "email": "{{env.USER_EMAIL}}", "password": "{{env.USER_PASSWORD}}" }
+  ],
+  "sessionAfterSignOut": [
+    { "tc": "TC-OUT-10", "name": "Sign Out ends the session on the server", "tags": ["@regression", "@security"],
+      "expectedStatus": 401,
+      "bug": "Sign Out only deletes the token in the browser: the server still accepts it (200) afterwards" }
+  ]
+}
