@@ -1,0 +1,27 @@
+{
+  "story": "AI-10",
+  "title": "Log in with email and password",
+  "loginRoute": "#/auth/login",
+  "wrongCredentials": [
+    { "jira": "AI-30", "tc": "TC-AUTH-10-02", "name": "Wrong password shows an error", "tags": ["@regression", "@negative"],
+      "email": "{{env.USER_EMAIL}}", "password": "Wrong@123", "expectedToast": "Incorrect email or password." },
+    { "jira": "AI-31", "tc": "TC-AUTH-10-03", "name": "Unregistered email shows an error", "tags": ["@regression", "@negative"],
+      "email": "no.such.user.test@example.com", "password": "Wrong@123", "expectedToast": "Incorrect email or password." }
+  ],
+  "requiredFields": [
+    { "jira": "AI-32", "tc": "TC-AUTH-10-04", "name": "Empty email shows a required message", "tags": ["@regression", "@negative"],
+      "email": "", "password": "{{env.USER_PASSWORD}}", "expectedMessage": "*Email is required" },
+    { "jira": "AI-33", "tc": "TC-AUTH-10-05", "name": "Empty password shows a required message", "tags": ["@regression", "@negative"],
+      "email": "{{env.USER_EMAIL}}", "password": "", "expectedMessage": "*Password is required" }
+  ],
+  "invalidEmail": [
+    { "jira": "AI-34", "tc": "TC-AUTH-10-06", "name": "Email without @ is rejected", "tags": ["@regression", "@negative"],
+      "email": "abc", "expectedMessage": "*Enter Valid Email" },
+    { "jira": "AI-35", "tc": "TC-AUTH-10-07", "name": "Email without a domain is rejected", "tags": ["@regression", "@negative"],
+      "email": "user@", "expectedMessage": "*Enter Valid Email" }
+  ],
+  "passwordMasking": [
+    { "jira": "AI-36", "tc": "TC-AUTH-10-08", "name": "Password field masks input", "tags": ["@regression"],
+      "password": "Abcdef1@", "expectedType": "password" }
+  ]
+}
