@@ -1,0 +1,13 @@
+{
+  "story": "AI-11",
+  "title": "Restrict shop pages to logged-in users",
+  "expectedRoute": "#/auth/login",
+  "protectedRoutes": [
+    { "jira": "AI-37", "tc": "TC-AUTH-11-01", "name": "Dashboard redirects a visitor to login", "tags": ["@smoke", "@regression", "@negative"],
+      "route": "#/dashboard/dash" },
+    { "jira": "AI-38", "tc": "TC-AUTH-11-02", "name": "Cart page redirects a visitor to login", "tags": ["@regression", "@negative"],
+      "route": "#/dashboard/cart" },
+    { "jira": "AI-39", "tc": "TC-AUTH-11-03", "name": "Your Orders redirects a visitor to login", "tags": ["@regression", "@negative"],
+      "route": "#/dashboard/myorders" }
+  ]
+}
