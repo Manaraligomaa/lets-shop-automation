@@ -1,0 +1,12 @@
+{
+  "story": "AI-10",
+  "title": "Log in with email and password (API)",
+  "rejected": [
+    { "tc": "TC-API-AUTH-01", "name": "Wrong password is rejected with 400 and a message", "tags": ["@regression", "@negative"],
+      "body": { "userEmail": "{{env.USER_EMAIL}}", "userPassword": "Wrong@123" },
+      "expectedStatus": 400, "expectedMessage": "Incorrect email or password." },
+    { "tc": "TC-API-AUTH-02", "name": "Empty login request is rejected with 400 and a message", "tags": ["@regression", "@negative"],
+      "body": {},
+      "expectedStatus": 400, "expectedMessage": "Email is required" }
+  ]
+}
