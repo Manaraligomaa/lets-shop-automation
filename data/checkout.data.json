@@ -1,0 +1,17 @@
+{
+  "feature": "checkout",
+  "title": "Fill in the order page",
+  "productId": "6960eac0c941646b7a8b3e68",
+  "shippingEmail": [
+    { "tc": "TC-CHK-01", "name": "Shipping email is prefilled with the account email", "tags": ["@regression"],
+      "expectedEmail": "{{env.USER_EMAIL}}" }
+  ],
+  "countrySearch": [
+    { "tc": "TC-CHK-02", "name": "Typing a country shows suggestions and one can be chosen", "tags": ["@regression"],
+      "typed": "Ind", "country": "India" }
+  ],
+  "missingCountry": [
+    { "tc": "TC-CHK-03", "name": "Place Order without a country is rejected", "tags": ["@regression", "@negative"],
+      "expectedToast": "Please Enter Full Shipping Information" }
+  ]
+}
