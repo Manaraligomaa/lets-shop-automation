@@ -1,0 +1,24 @@
+{
+  "feature": "navigation",
+  "title": "Navigate the shop",
+  "dashboardRoute": "#/dashboard/dash",
+  "headerButtons": [
+    { "tc": "TC-NAV-01", "name": "HOME opens the dashboard", "tags": ["@smoke", "@regression"],
+      "startRoute": "#/dashboard/cart", "button": "HOME", "expectedRoute": "#/dashboard/dash" },
+    { "tc": "TC-NAV-02", "name": "ORDERS opens My Orders", "tags": ["@regression"],
+      "startRoute": "#/dashboard/dash", "button": "ORDERS", "expectedRoute": "#/dashboard/myorders" },
+    { "tc": "TC-NAV-03", "name": "Cart opens My Cart", "tags": ["@smoke", "@regression"],
+      "startRoute": "#/dashboard/dash", "button": "Cart", "expectedRoute": "#/dashboard/cart" }
+  ],
+  "viewProduct": [
+    { "tc": "TC-NAV-04", "name": "View opens the product details page", "tags": ["@smoke", "@regression"],
+      "product": "iphone 13 pro", "expectedRoute": "#/dashboard/product-details/6960ea76c941646b7a8b3dd5" }
+  ],
+  "continueFromDetails": [
+    { "tc": "TC-NAV-05", "name": "Continue Shopping on product details returns to the dashboard", "tags": ["@regression"],
+      "productId": "6960ea76c941646b7a8b3dd5" }
+  ],
+  "continueFromCart": [
+    { "tc": "TC-NAV-06", "name": "Continue Shopping on the cart returns to the dashboard", "tags": ["@regression"] }
+  ]
+}
