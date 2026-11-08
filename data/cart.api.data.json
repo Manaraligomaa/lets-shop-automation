@@ -1,0 +1,16 @@
+{
+  "feature": "cart",
+  "title": "Cart API",
+  "emptyCart": [
+    { "tc": "TC-API-CART-01", "name": "Empty cart returns 200 with No Product in Cart", "tags": ["@regression"],
+      "expectedMessage": "No Product in Cart" }
+  ],
+  "addProducts": [
+    { "tc": "TC-API-CART-02", "name": "Added products are in the cart at their catalog price", "tags": ["@smoke", "@regression"],
+      "products": ["ZARA COAT 3", "iphone 13 pro"] }
+  ],
+  "removeProduct": [
+    { "tc": "TC-API-CART-03", "name": "Removing a product leaves the others in the cart", "tags": ["@regression"],
+      "products": ["ZARA COAT 3", "iphone 13 pro"], "remove": "iphone 13 pro", "remaining": ["ZARA COAT 3"] }
+  ]
+}
