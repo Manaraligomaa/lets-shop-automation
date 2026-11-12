@@ -15,6 +15,7 @@ npx playwright test --grep @AI-13   # one story, UI and API
 npm run test:headed                 # watch it, one test at a time
 npm run test:ui                     # UI mode: pick, watch and time-travel tests
 npm run report                      # open the last HTML report
+npm run allure                      # build and open the Allure report of the last run
 npm run check                       # tsc + eslint
 ```
 
@@ -76,6 +77,7 @@ Feature tags: `@api`, `@navigation`, `@products`, `@cart`, `@checkout`, `@logout
 ## Reports and diagnostics
 - `playwright-report/`: HTML report with steps, tags, Jira links and known-bug notes (`npm run report`).
 - `test-results/traceability.md`: one row per test case (Jira key, title, result: passed / FAILED / flaky / known bug / BUG FIXED?).
+- `allure-report/`: Allure 3 report (`npm run allure`), with steps, tags, environment, Jira links and each test's history across runs (kept in `.cache/allure-history.jsonl`). Built from `test-results/allure-results`, which every run starts fresh. A known bug shows as passed with the `known-bug` tag, as in the HTML report. Allure is pinned to 3.22.1: later versions need Node 22.18 or newer.
 - `test-results/<test>/browser-log.txt` on failure: console errors, page errors, failed, 4xx/5xx, slow and still-pending requests.
 - Screenshots and traces are kept only for failed tests. On CI: JUnit at `test-results/junit.xml`.
 
