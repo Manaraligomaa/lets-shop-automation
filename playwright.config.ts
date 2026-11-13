@@ -1,3 +1,4 @@
+import os from 'node:os';
 import path from 'node:path';
 import { defineConfig, devices, type ReporterDescription } from '@playwright/test';
 import { env } from './config/env';
@@ -7,6 +8,19 @@ const reporters: ReporterDescription[] = [
   ['html', { open: 'never' }],
   // Absolute path, so a wrapper config in another folder still finds it.
   [path.join(__dirname, 'reporters', 'traceability.reporter.ts')],
+  // Results for the Allure report (`npm run allure`). Inside test-results/, so each run starts clean.
+  [
+    'allure-playwright',
+    {
+      resultsDir: path.join(__dirname, 'test-results', 'allure-results'),
+      environmentInfo: {
+        'Base URL': env.baseUrl,
+        Browser: env.browserChannel ?? 'chromium',
+        OS: `${os.type()} ${os.release()}`,
+        'Node.js': process.version,
+      },
+    },
+  ],
 ];
 if (env.isCI) reporters.push(['junit', { outputFile: 'test-results/junit.xml' }]);
 

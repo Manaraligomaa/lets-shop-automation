@@ -2,7 +2,7 @@ import tseslint from 'typescript-eslint';
 import playwright from 'eslint-plugin-playwright';
 
 export default tseslint.config(
-  { ignores: ['node_modules', 'playwright-report', 'test-results'] },
+  { ignores: ['node_modules', 'playwright-report', 'test-results', 'allure-report'] },
   ...tseslint.configs.recommended,
   {
     // Type-aware rules: a missing `await` on a Playwright call is the most common cause of flaky tests.
